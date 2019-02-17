@@ -43,20 +43,19 @@ chrome.contextMenus.create({
     title: 'Articlate Article',
     contexts: ['link'],
     onclick: function (link) {
-        articlate('UTF16', link, function (data) {
-            var entities = data.responses;
-            createWordle(entities, function(wordle) {
-                displayPopup(wordle);
-            });
-        });
+        displayPopup()
+        // articlate('UTF16', link, function (data) {
+        //     var entities = data.responses;
+        //     displayPopup(entities);
+        // });
     }
 });
 
 var createWordle = function(entitities, cb) {
-    cb(generateWordleImage());
+    cb(generateWordleImage(entitities));
 }
 
-var displayPopup = function (wordle) {
-    newWindow = window.open("", null, "height=200,width=400,status=yes,toolbar=no,menubar=no,location=no");
-    newWindow.document.write("<img src='" + wordle + "'/>");
+var displayPopup = function () {
+    newWindow = window.open("/wordletest.html", null, "toolbar=no,menubar=no,location=no");
+    //newWindow.document.write("<img src='" + wordle + "'/>");
 }
